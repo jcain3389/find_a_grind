@@ -13,3 +13,59 @@
  *= require_tree .
  *= require_self
  */
+body {
+  background-image: url('http://4.bp.blogspot.com/-A2y7KgeGbl8/T1crSVjwKPI/AAAAAAAAaj8/BmFrNIfdqRk/s1600/Best-top-desktop-coffee-wallpapers-hd-coffee-wallpaper-pictures-backgrounds-05.jpg');
+  background-size: cover;
+  font-family: 'Poiret One', cursive;
+}
+
+h1 {
+  text-align: center;
+}
+
+span {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.header {
+  background-color: white;
+  border-radius: 10px;
+  color: rgb(92,42,16);
+  margin: 0 auto;
+  margin-top: 50px;
+  opacity: .85;
+  padding: 15px;
+  width: 300px;
+}
+
+.search-results {
+  margin: 0 auto;
+  width: 600px;
+}
+
+#results {
+  padding-left: 0px;
+}
+
+#results li {
+  background-color: white;
+  border-radius: 10px;
+  color: rgb(92,42,16);
+  margin: 10px;
+  opacity: .85;
+  padding: 13px;
+  text-align: center;
+}
+
+#results li a {
+  color: rgb(92,42,16);
+}
+
+#search {
+  text-align: center;
+}
