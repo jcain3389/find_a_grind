@@ -42,16 +42,16 @@ $(document).ready(function() {
       'data' : parameterMap,
       'dataType' : 'jsonp',
       'jsonpCallback' : 'cb',
-      'success' : function(data, textStats, XMLHttpRequest) {
-          console.log(data);
+      'success' : function(data) {
           var shops = '';
           for (i=0; i<data.businesses.length; i++) {
               var business = data.businesses[i];
-              shops += "<li>" + business.name + "<br>";
+              var address = business.location.display_address[0] + " " + business.location.city + " " + business.location.state_code + " " + business.location.postal_code
+              shops += "<li><span><a href='http://www.google.com/maps/place/" + address + "'>" + business.name + "</a></span><br>";
               for (x=0; x<business.location.display_address.length; x++) {
                   shops += business.location.display_address[x] + " ";
               }
-              shops += "</li><br>";
+              shops += "</li>";
           }
           $('#results').html(shops);
       }
