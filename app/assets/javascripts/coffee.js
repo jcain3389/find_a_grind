@@ -1,28 +1,21 @@
 $(document).ready(function() {
-  var auth = {
-    consumerKey : ENV["yelp_consumer_key"],
-    consumerSecret : ENV["yelp_consumer_secret"],
-    accessToken : ENV["yelp_access_token"],
-    accessTokenSecret : ENV["yelp_access_token_secret"],
-    serviceProvider : {
-        signatureMethod : ENV["yelp_signature_secret"]
+  var parameters = [['category_filter', 'coffee'], ['callback', 'cb'], ['limit', 10], ['sort', 1]];
+  var accessor;
+
+  $.ajax({
+    'url' : '/get_keys',
+    'dataType' : 'json',
+    'success' : function(data) {
+      parameters.push(['oauth_consumer_key', data.consumerKey]);
+      parameters.push(['oauth_consumer_secret', data.consumerSecret]);
+      parameters.push(['oauth_token', data.accessToken]);
+      parameters.push(['oauth_signature_method', data.serviceProvider.signatureMethod]);
+      accessor = {
+        consumerSecret : data.consumerSecret,
+        tokenSecret : data.accessTokenSecret
+      };
     }
-  };
-
-  parameters = [];
-  parameters.push(['category_filter', 'coffee']);
-  parameters.push(['callback', 'cb']);
-  parameters.push(['limit', 10]);
-  parameters.push(['sort', 1]);
-  parameters.push(['oauth_consumer_key', auth.consumerKey]);
-  parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
-  parameters.push(['oauth_token', auth.accessToken]);
-  parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
-
-  var accessor = {
-    consumerSecret : auth.consumerSecret,
-    tokenSecret : auth.accessTokenSecret
-  };
+  });
 
   $('#search').live('submit', function(evt) {
     evt.preventDefault();
@@ -54,11 +47,11 @@ $(document).ready(function() {
           var shops = '';
           for (i=0; i<data.businesses.length; i++) {
               var business = data.businesses[i];
-              shops += "<li>" + business.name + ': ';
+              shops += "<li>" + business.name + "<br>";
               for (x=0; x<business.location.display_address.length; x++) {
                   shops += business.location.display_address[x] + " ";
               }
-              shops += "</li>";
+              shops += "</li><br>";
           }
           $('#results').html(shops);
       }
