@@ -1,11 +1,11 @@
 $(document).ready(function() {
   var auth = {
-    consumerKey : YELP_CONSUMER_KEY,
-    consumerSecret : YELP_CONSUMER_SECRET,
-    accessToken : YELP_ACCESS_TOKEN,
-    accessTokenSecret : YELP_ACCESS_TOKEN_SECRET,
+    consumerKey : ENV["yelp_consumer_key"],
+    consumerSecret : ENV["yelp_consumer_secret"],
+    accessToken : ENV["yelp_access_token"],
+    accessTokenSecret : ENV["yelp_access_token_secret"],
     serviceProvider : {
-        signatureMethod : YELP_SIGNATURE_METHOD
+        signatureMethod : ENV["yelp_signature_secret"]
     }
   };
 
